@@ -33,6 +33,10 @@ The following entry points are available:
 - `cli`: Start the pipeline without interaction.
 - `evaluate`: Perform a grid computation with the parameters major claim method, relationship type threshold and graph construction method.
 
+Per default, the program will look for input data in `data/input`.
+If you just want to convert plain text to argument graph, a `.txt` file is enough.
+If you want to compare a benchmark graph to the generated on, please provide a `.json` file conforming to the [OVA-format](http://ova.uni-trier.de).
+
 
 ## Training the Classifiers
 
