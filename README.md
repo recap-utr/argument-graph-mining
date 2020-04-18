@@ -42,7 +42,7 @@ If you want to compare a benchmark graph to the generated on, please provide a `
 
 ### ADU and Claim/Premise
 
-To start training , run the program with:
+To start training, run the program with:
 
 ``` poetry run python -m recap_am.adu.training.train_adu```
 
@@ -54,12 +54,9 @@ for the ADU or Claim/Premise classifier respectively.
 
 ### Relationship Type
 
-Start the jupyter notebook Argument-Graph-Mining/recap_am/preprocessing/pipeline.ipynb within the container:
+Start the jupyter notebook `recap_am/preprocessing/pipeline.ipynb` within the container:
 
-- run cells & import libraries
-- load your data of type CSV [child, parent, stance] into a DataFrame df
-- run the following call to generate a dataset using GloVe Embeddings for either "english" or "german"
-
-```data = prep_dataset(df, model = "glove", language = "english"):```
-
-- use data to train any classifier
+- Run cells & import libraries.
+- Load your CSV data with the rows `child, parent, stance` into a DataFrame `df`.
+- Run the following call to generate a dataset using GloVe Embeddings for either "english" or "german": `data = prep_dataset(df, model = "glove", language = "english")`.
+- Use `data` to train any classifier.
