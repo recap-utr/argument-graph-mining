@@ -42,8 +42,15 @@ If you want to compare a benchmark graph to the generated on, please provide a `
 
 ### ADU and Claim/Premise
 
-TODO
+To start training , run the program with:
 
+``` poetry run python -m recap_am.adu.training.train_adu```
+
+or
+
+``` poetry run python -m recap_am.adu.training.train_clpr```
+
+for the ADU or Claim/Premise classifier respectively.
 
 ### Relationship Type
 
