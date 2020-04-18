@@ -54,7 +54,7 @@ for the ADU or Claim/Premise classifier respectively.
 
 ### Relationship Type
 
-To start training , start the jupyter notebook Argument-Graph-Mining/recap_am/preprocessing/pipeline.ipynb within the container":
+Start the jupyter notebook Argument-Graph-Mining/recap_am/preprocessing/pipeline.ipynb within the container:
 
 - run cells & import libraries
 - load your data of type CSV [child, parent, stance] into a DataFrame df
