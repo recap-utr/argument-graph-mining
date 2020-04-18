@@ -54,4 +54,12 @@ for the ADU or Claim/Premise classifier respectively.
 
 ### Relationship Type
 
-TODO
+To start training , start the jupyter notebook pipeline.ipynb within the container":
+
+- run cells & import libraries
+- load your data of type CSV [child, parent, stance] into a DataFrame df
+- run the following call to generate a dataset using GloVe Embeddings for either "english" or "german"
+
+```data = prep_dataset(df, model = "glove", language = "english"):```
+
+- use data to train any classifier
