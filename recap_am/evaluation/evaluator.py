@@ -85,7 +85,7 @@ def run(
 
 
 def _strip_snodes(base_graph: ag.Graph) -> ag.Graph:
-    g = base_graph.copy(nlp.parse)
+    g = base_graph.copy(nlp=nlp.parse)
     g.strip_snodes()
 
     return g

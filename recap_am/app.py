@@ -89,9 +89,8 @@ def run_server() -> None:
 def evaluate() -> None:
     param_grid = {
         "mc-method": ["centroid", "first", "pairwise", "relations"],
-        "relation-threshold": [0.5, 0.6, 0.7, 0.8, 0.9],
+        "relation-threshold": [0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
         "relation-method": ["adu_position", "flat_tree", "pairwise_comparison"],
-        # "relation-fallback": ["none", "support"],
     }
     grid = ParameterGrid(param_grid)
     timestamp = _timestamp()

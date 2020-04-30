@@ -18,15 +18,16 @@ logger = logging.getLogger(__name__)
 config = Config.get_instance()
 
 
-extensions = [".json", ".txt", ".text", ".label"]
+extensions = [".json", ".txt", ".text", ".label", ".ann"]
 
 
 @dataclass
 class Query:
     name: str  # File name without suffix
-    text: t.Optional[str] = None  # Content of .txt files
-    # fallbacks: .text file, benchmark.plain_text
-    benchmark: t.Optional[ag.Graph] = None  # Argument graph
+    text: t.Optional[
+        str
+    ] = None  # Content of .txt files, fallbacks: .text file, benchmark.plain_text
+    benchmark: t.Optional[ag.Graph] = None  # Content of .json and .ann files
     _text: t.Optional[str] = None  # Content of .text files
     _labels: t.Optional[t.List[str]] = None  # Labels corresponding to .text files
 
@@ -92,6 +93,8 @@ def _parse_file(name: str, suffix: str, file: t.IO, query: Query) -> None:
         query._text = _parse_txt(file)
     elif suffix == ".label":
         query._labels = _parse_label(file)
+    elif suffix == ".ann":
+        query.benchmark = _parse_ann(name, file)
 
 
 def _parse_txt(file: t.IO) -> str:
@@ -99,8 +102,11 @@ def _parse_txt(file: t.IO) -> str:
 
 
 def _parse_json(name: str, file: t.IO) -> ag.Graph:
-    graph_json = json.load(file)
-    return ag.Graph.from_dict(graph_json, name, nlp.parse)
+    return ag.Graph.from_json(file, name, nlp=nlp.parse)
+
+
+def _parse_ann(name: str, file: t.IO) -> ag.Graph:
+    return ag.Graph.from_brat(file, name, nlp=nlp.parse)
 
 
 def _parse_label(file: t.IO) -> t.List[str]:
