@@ -38,6 +38,15 @@ If you just want to convert plain text to argument graph, a `.txt` file is enoug
 If you want to compare a benchmark graph to the generated on, please provide a `.json` file conforming to the [OVA-format](http://ova.uni-trier.de).
 
 
+## Linguistic Features
+
+| Category   | Features                                                                                                         |
+|------------|------------------------------------------------------------------------------------------------------------------|
+| Structural | Punctuation, sentence length and position.                                                                       |
+| Indicators | Claim-premise and first-person indicators.                                                                       |
+| Syntactic  | Depth of constituency parse trees, presence of modal verbs, number of grammatical productions in the parse tree. |
+| Embeddings | GloVe sentence embeddings (arithmetic mean of its word vectors).                                                 |
+
 ## Training the Classifiers
 
 ### ADU and Claim/Premise
