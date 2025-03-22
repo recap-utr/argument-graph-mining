@@ -6,10 +6,10 @@ input = "data/input"
 output = "data/output"
 
 [nlp]
-language = "de" # de, en
+language = "en"                # de, en
 embeddings = "spacy"
-nltk_model = "german" # english, german
-spacy_model = "de_core_news_md" # en_core_web_lg, de_core_news_md
+nltk_model = "english"         # english, german
+spacy_model = "en_core_web_lg" # en_core_web_lg, de_core_news_md
 
 [flask]
 name = "ReCAP-Argument-Mining"
@@ -29,7 +29,7 @@ de_model = "data/relation/logreg_de.sav"
 
 method = "adu_position" # adu_position, flat_tree, pairwise_comparison
 threshold = 0.6
-fallback = "support" # none, support, attack
+fallback = "support"    # none, support, attack
 
 [adu]
 #["RandomForest","SVC","LogisticRegression","AdaBoost","XGBoost","XGBRF","AutoML","Stacking"]
@@ -47,7 +47,7 @@ output = "data/out/out.txt"
 label = "data/ADU/in/PE/en"
 
 [adu.stacking]
-estimator_stack = ["rf","ada","log"]
+estimator_stack = ["rf", "ada", "log"]
 final_estimator = "xgbrf"
 passthrough = true
 
@@ -59,8 +59,8 @@ freqdist = "FreqDist.pkl"
 
 [adu.feature_selection]
 #["VT","scale","PCA","select_kbest","PCA_selectk_union"]
-methods = ["VT","scale"]
-dir =  "data/ADU/feature_selection"
+methods = ["VT", "scale"]
+dir = "data/ADU/feature_selection"
 scaler = "scaler"
 #["Robust","Power","MinMax","Standard","QuantileUniform","QuantileGaussian"]
 scaling_method = "Robust"
