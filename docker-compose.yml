@@ -3,3 +3,9 @@ services:
     build: .
     ports:
       - "8888:80"
+    command: ["argmining-app"]
+  grpc:
+    build: .
+    ports:
+      - "50051:50051"
+    command: ["argmining-grpc"]

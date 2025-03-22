@@ -18,4 +18,4 @@ RUN uv run --frozen --module nltk.downloader punkt stopwords
 
 COPY data src config-example.toml config.toml pyproject.toml uv.lock ./
 
-ENTRYPOINT ["uv", "run", "--frozen", "argmining-app"]
+ENTRYPOINT ["uv", "run", "--frozen"]
