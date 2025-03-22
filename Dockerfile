@@ -1,20 +1,21 @@
-# https://stackoverflow.com/questions/53835198/integrating-python-poetry-with-docker
-
-FROM python:3.7-slim
-ENV POETRY_VERSION=1.0.0
+FROM ghcr.io/astral-sh/uv:0.6-python3.8-bookworm-slim
 
 WORKDIR /app
 
+ENV UV_COMPILE_BYTECODE=1 \
+  UV_LINK_MODE=copy
+
 RUN apt update \
-    && apt install -y --no-install-recommends graphviz \
-    && rm -rf /var/lib/apt/lists/*
+  && apt install -y --no-install-recommends graphviz build-essential \
+  && rm -rf /var/lib/apt/lists/*
 
-RUN pip install "poetry==${POETRY_VERSION}" \
-    && poetry config virtualenvs.create false
+RUN --mount=type=cache,target=/root/.cache/uv \
+  --mount=type=bind,source=uv.lock,target=uv.lock \
+  --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+  uv sync --frozen --no-install-project
 
-COPY poetry.lock* pyproject.toml ./
-RUN poetry install --no-interaction --no-ansi
+RUN uv run --frozen --module nltk.downloader punkt stopwords
 
-RUN python -m nltk.downloader punkt stopwords \
-    && python -m spacy download en_core_web_lg \
-    && python -m spacy download de_core_news_md
+COPY data src config-example.toml config.toml pyproject.toml uv.lock ./
+
+ENTRYPOINT ["uv", "run", "--frozen", "argmining-app"]

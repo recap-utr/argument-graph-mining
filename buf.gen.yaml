@@ -1,0 +1,14 @@
+version: v2
+managed:
+  enabled: true
+clean: false
+inputs:
+  - module: buf.build/recap/arg-services:v1.5.3
+# https://protobuf.dev/support/version-support/#python
+plugins:
+  - remote: buf.build/protocolbuffers/python:v3.14.0
+    out: ./src
+    include_imports: true
+  - remote: buf.build/grpc/python:v1.50.1
+    out: ./src
+    include_imports: true
