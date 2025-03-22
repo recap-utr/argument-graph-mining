@@ -20,7 +20,7 @@
             text = ''
               rm -rf src/arg_services src/google
               ${lib.getExe pkgs.buf} generate
-              find src/* -type d -exec touch {}/__init__.py \;
+              find src/arg_services/* -type d -exec touch {}/__init__.py \;
             '';
           };
           devShells.default = pkgs.mkShell {

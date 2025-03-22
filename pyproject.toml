@@ -38,6 +38,7 @@ dependencies = [
 
 [project.scripts]
 argmining-app = "argmining.app:run_server"
+argmining-grpc = "argmining.app:run_grpc"
 argmining-eval = "argmining.app:evaluate"
 
 [build-system]

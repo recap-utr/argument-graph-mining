@@ -7,20 +7,26 @@ import os
 import traceback
 import typing as t
 import warnings
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from timeit import default_timer as timer
 from zipfile import ZipFile
 
 import flask
+import grpc
 import pendulum
 import werkzeug
+from grpc_reflection.v1alpha import reflection
 from sklearn.model_selection import ParameterGrid
 
 import arggraph as ag
+from arg_services.graph.v1 import graph_pb2
+from arg_services.mining.v1beta import mining_pb2, mining_pb2_grpc
 from argmining.adu import run_task
 from argmining.controller.preprocess import prep_production
 from argmining.evaluation import evaluator
 from argmining.model.config import Config
+from argmining.model.protobuf_graph import aif2protobuf
 from argmining.model.query import Query
 from argmining.model.statistic import Statistic, Statistics
 from argmining.relation import construct_graph
@@ -150,7 +156,7 @@ def run(
         stat = stats.new(query)
 
         try:
-            _process(query, stat, out_path)
+            _process_run(query, stat, out_path)
         except Exception:
             print(traceback.format_exc())
 
@@ -162,7 +168,23 @@ def run(
     return stats
 
 
-def _process(query: Query, statistic: Statistic, out_path: Path) -> None:
+def _text2graph(name: str, text: str) -> ag.Graph:
+    """Do the processing for one input file."""
+
+    # Preprocessing
+    doc = prep_production(name, text)
+
+    # ADU classification
+    doc = run_task.run_production(doc)
+
+    # Attack/support classification
+    rel_types = attack_support.classify(doc._.ADU_Sents)
+
+    # Create graph with relationships
+    return construct_graph.main(doc, rel_types)
+
+
+def _process_run(query: Query, statistic: Statistic, out_path: Path) -> None:
     """Do the processing for one input file."""
 
     start_time = timer()
@@ -220,3 +242,41 @@ def _update_config(data: t.Mapping[str, t.Any], from_flask: bool = False) -> Non
     config["adu"]["MC"]["method"] = data["mc-method"]
     config["relation"]["method"] = data["relation-method"]
     config["relation"]["threshold"] = float(data["relation-threshold"])
+
+
+class MiningService(mining_pb2_grpc.MiningServiceServicer):
+    def RunPipeline(self, request, context):
+        response = mining_pb2.RunPipelineResponse()
+
+        for idx, text in enumerate(request.texts, start=1):
+            log.info(f"Processing {idx}/{len(request.texts)}).")
+
+            try:
+                graph_aif = _text2graph(str(idx), text)
+                graph_pb = aif2protobuf(graph_aif)
+                response.graphs.append(graph_pb)
+            except Exception:
+                print(traceback.format_exc())
+                response.graphs.append(graph_pb2.Graph())
+
+        return response
+
+
+def run_grpc():
+    address = f"{config['grpc']['host']}:{config['grpc']['port']}"
+    server = grpc.server(ThreadPoolExecutor(max_workers=1))
+    mining_pb2_grpc.add_MiningServiceServicer_to_server(MiningService(), server)
+
+    reflection.enable_server_reflection(
+        [
+            mining_pb2.DESCRIPTOR.services_by_name["MiningService"].full_name,
+            reflection.SERVICE_NAME,
+        ],
+        server,
+    )
+
+    server.add_insecure_port(address)
+    server.start()
+
+    print(f"Listening on {address}.")
+    server.wait_for_termination()
