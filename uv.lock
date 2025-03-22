@@ -3,6 +3,65 @@ revision = 1
 requires-python = ">=3.7, <3.9"
 
 [[package]]
+name = "argmining"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "de-core-news-md" },
+    { name = "edlib" },
+    { name = "en-core-web-lg" },
+    { name = "flask" },
+    { name = "graphviz" },
+    { name = "grpcio" },
+    { name = "grpcio-reflection" },
+    { name = "lxml" },
+    { name = "markupsafe" },
+    { name = "matplotlib" },
+    { name = "networkx" },
+    { name = "nltk" },
+    { name = "numpy" },
+    { name = "packaging" },
+    { name = "pandas" },
+    { name = "pendulum" },
+    { name = "protobuf" },
+    { name = "scikit-learn" },
+    { name = "scipy" },
+    { name = "sentence-transformers" },
+    { name = "setuptools" },
+    { name = "spacy" },
+    { name = "tomlkit" },
+    { name = "xgboost" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "de-core-news-md", url = "https://github.com/explosion/spacy-models/releases/download/de_core_news_md-2.2.0/de_core_news_md-2.2.0.tar.gz" },
+    { name = "edlib", specifier = ">=1.3,<1.4" },
+    { name = "en-core-web-lg", url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-2.2.0/en_core_web_lg-2.2.0.tar.gz" },
+    { name = "flask", specifier = ">=1.1,<1.2" },
+    { name = "graphviz", specifier = ">=0.13,<0.14" },
+    { name = "grpcio", specifier = ">=1.30,<1.40" },
+    { name = "grpcio-reflection", specifier = ">=1.30,<1.40" },
+    { name = "lxml", specifier = ">=4.6,<4.7" },
+    { name = "markupsafe", specifier = ">=1,<2" },
+    { name = "matplotlib", specifier = ">=3.2,<3.3" },
+    { name = "networkx", specifier = ">=2.6,<2.7" },
+    { name = "nltk", specifier = ">=3.5,<3.6" },
+    { name = "numpy", specifier = ">=1.18,<1.19" },
+    { name = "packaging", specifier = ">=20.3,<20.4" },
+    { name = "pandas", specifier = ">=0.25,<0.26" },
+    { name = "pendulum", specifier = ">=2.1,<2.2" },
+    { name = "protobuf", specifier = ">=3.10,<3.20" },
+    { name = "scikit-learn", specifier = ">=0.22,<0.23" },
+    { name = "scipy", specifier = ">=1.4,<1.5" },
+    { name = "sentence-transformers", specifier = ">=0.2,<0.3" },
+    { name = "setuptools", specifier = ">=50,<60" },
+    { name = "spacy", specifier = ">=2.2,<2.3" },
+    { name = "tomlkit", specifier = ">=0.5,<0.6" },
+    { name = "xgboost", specifier = ">=0.90,<0.91" },
+]
+
+[[package]]
 name = "blis"
 version = "0.4.1"
 source = { registry = "https://pypi.org/simple" }
@@ -621,65 +680,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/67/62/4c25435a7c2f9c7aef6800862d6c227fc4cd81e9f0beebc5549a49c8ed53/pytzdata-2020.1.tar.gz", hash = "sha256:3efa13b335a00a8de1d345ae41ec78dd11c9f8807f522d39850f2dd828681540", size = 281719 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e0/4f/4474bda990ee740a020cbc3eb271925ef7daa7c8444240d34ff62c8442a3/pytzdata-2020.1-py2.py3-none-any.whl", hash = "sha256:e1e14750bcf95016381e4d472bad004eef710f2d6417240904070b3d6654485f", size = 489958 },
-]
-
-[[package]]
-name = "recap-am"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "de-core-news-md" },
-    { name = "edlib" },
-    { name = "en-core-web-lg" },
-    { name = "flask" },
-    { name = "graphviz" },
-    { name = "grpcio" },
-    { name = "grpcio-reflection" },
-    { name = "lxml" },
-    { name = "markupsafe" },
-    { name = "matplotlib" },
-    { name = "networkx" },
-    { name = "nltk" },
-    { name = "numpy" },
-    { name = "packaging" },
-    { name = "pandas" },
-    { name = "pendulum" },
-    { name = "protobuf" },
-    { name = "scikit-learn" },
-    { name = "scipy" },
-    { name = "sentence-transformers" },
-    { name = "setuptools" },
-    { name = "spacy" },
-    { name = "tomlkit" },
-    { name = "xgboost" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "de-core-news-md", url = "https://github.com/explosion/spacy-models/releases/download/de_core_news_md-2.2.0/de_core_news_md-2.2.0.tar.gz" },
-    { name = "edlib", specifier = ">=1.3,<1.4" },
-    { name = "en-core-web-lg", url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-2.2.0/en_core_web_lg-2.2.0.tar.gz" },
-    { name = "flask", specifier = ">=1.1,<1.2" },
-    { name = "graphviz", specifier = ">=0.13,<0.14" },
-    { name = "grpcio", specifier = ">=1.30,<1.40" },
-    { name = "grpcio-reflection", specifier = ">=1.30,<1.40" },
-    { name = "lxml", specifier = ">=4.6,<4.7" },
-    { name = "markupsafe", specifier = ">=1,<2" },
-    { name = "matplotlib", specifier = ">=3.2,<3.3" },
-    { name = "networkx", specifier = ">=2.6,<2.7" },
-    { name = "nltk", specifier = ">=3.5,<3.6" },
-    { name = "numpy", specifier = ">=1.18,<1.19" },
-    { name = "packaging", specifier = ">=20.3,<20.4" },
-    { name = "pandas", specifier = ">=0.25,<0.26" },
-    { name = "pendulum", specifier = ">=2.1,<2.2" },
-    { name = "protobuf", specifier = ">=3.10,<3.20" },
-    { name = "scikit-learn", specifier = ">=0.22,<0.23" },
-    { name = "scipy", specifier = ">=1.4,<1.5" },
-    { name = "sentence-transformers", specifier = ">=0.2,<0.3" },
-    { name = "setuptools", specifier = ">=50,<60" },
-    { name = "spacy", specifier = ">=2.2,<2.3" },
-    { name = "tomlkit", specifier = ">=0.5,<0.6" },
-    { name = "xgboost", specifier = ">=0.90,<0.91" },
 ]
 
 [[package]]

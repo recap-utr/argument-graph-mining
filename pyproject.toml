@@ -38,6 +38,7 @@ dependencies = [
 
 [project.scripts]
 argmining-app = "argmining.app:run_server"
+argmining-eval = "argmining.app:evaluate"
 
 [build-system]
 requires = ["setuptools>=61"]
