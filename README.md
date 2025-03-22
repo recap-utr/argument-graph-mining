@@ -21,11 +21,11 @@ Future runs are cached and the app available immediately.
 
 Using **Docker**, start the program with:
 
-```docker-compose run app python -m recap_am.{entrypoint}```
+```docker-compose run app python -m argmining.{entrypoint}```
 
 Using **Poetry**, start the program with:
 
-```poetry run python -m recap_am.{entrypoint}```
+```poetry run python -m argmining.{entrypoint}```
 
 The following entry points are available:
 
@@ -53,17 +53,17 @@ If you want to compare a benchmark graph to the generated on, please provide a `
 
 To start training, run the program with:
 
-``` poetry run python -m recap_am.adu.training.train_adu```
+``` poetry run python -m argmining.adu.training.train_adu```
 
 or
 
-``` poetry run python -m recap_am.adu.training.train_clpr```
+``` poetry run python -m argmining.adu.training.train_clpr```
 
 for the ADU or Claim/Premise classifier respectively.
 
 ### Relationship Type
 
-Start the jupyter notebook `recap_am/preprocessing/pipeline.ipynb` within the container:
+Start the jupyter notebook `argmining/preprocessing/pipeline.ipynb` within the container:
 
 - Run cells & import libraries.
 - Load your CSV data with the rows `child, parent, stance` into a DataFrame `df`.
