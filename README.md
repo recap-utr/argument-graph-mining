@@ -5,14 +5,13 @@ This program has been used to perform the evaluation of our proposed argument mi
 ## System Requirements
 
 - [Docker](www.docker.com) and [Docker-Compose](https://github.com/docker/compose)
-- Alternatively: [Python](https://www.python.org) 3.7 and [Poetry](https://python-poetry.org) 1.0
+- Alternatively: [uv](https://github.com/astral-sh/uv)
 
 ## Installation
 
 - Duplicate the file `config-example.yml` to `config.yml` and adapt the settings to your liking.
 - Create the folders `data/input` and `data/output`.
 - If using Docker, please do not edit the web server settings.
-
 
 ## Pipeline Usage
 
@@ -21,17 +20,17 @@ Future runs are cached and the app available immediately.
 
 Using **Docker**, start the program with:
 
-```docker-compose run app python -m argmining.{entrypoint}```
+`docker-compose run argmining-{entrypoint}`
 
-Using **Poetry**, start the program with:
+Using **uv**, start the program with:
 
-```poetry run python -m argmining.{entrypoint}```
+```uv run argmining-{entrypoint}```
 
 The following entry points are available:
 
-- `server`: Starts a flask server providing a website to perform interactive mining. The address is printed in the terminal.
-- `cli`: Start the pipeline without interaction.
-- `evaluate`: Perform a grid computation with the parameters major claim method, relationship type threshold and graph construction method.
+- `app`: Starts a flask server providing a website to perform interactive mining. The address is printed in the terminal.
+- `grpc`: Starts a gRPC server to perform mining via API using the [arg-services](https://github.com/recap-utr/arg-services) library.
+- `eval`: Perform a grid computation with the parameters major claim method, relationship type threshold and graph construction method.
 
 Per default, the program will look for input data in `data/input`.
 If you just want to convert plain text to argument graph, a `.txt` file is enough.
@@ -53,11 +52,11 @@ If you want to compare a benchmark graph to the generated on, please provide a `
 
 To start training, run the program with:
 
-``` poetry run python -m argmining.adu.training.train_adu```
+`uv run -m argmining.adu.training.train_adu`
 
 or
 
-``` poetry run python -m argmining.adu.training.train_clpr```
+`uv run -m argmining.adu.training.train_clpr`
 
 for the ADU or Claim/Premise classifier respectively.
 

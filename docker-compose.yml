@@ -9,3 +9,6 @@ services:
     ports:
       - "50051:50051"
     command: ["argmining-grpc"]
+  eval:
+    build: .
+    command: ["argmining-eval"]
