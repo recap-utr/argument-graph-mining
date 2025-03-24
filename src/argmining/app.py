@@ -250,7 +250,7 @@ class MiningService(mining_pb2_grpc.MiningServiceServicer):
         _update_config(request.extras)
 
         for idx, text in enumerate(request.texts, start=1):
-            log.info(f"Processing {idx}/{len(request.texts)}).")
+            log.info(f"Processing {idx}/{len(request.texts)}.")
 
             try:
                 graph_aif = _text2graph(str(idx), text)
