@@ -2,41 +2,16 @@
 
 This program has been used to perform the evaluation of our proposed argument mining pipeline.
 
-## System Requirements
-
-- [Docker](www.docker.com) and [Docker-Compose](https://github.com/docker/compose)
-- Alternatively: [Python](https://www.python.org) 3.7 and [Poetry](https://python-poetry.org) 1.0
-
 ## Installation
 
-- Duplicate the file `config-example.yml` to `config.yml` and adapt the settings to your liking.
+- Install [uv](https://github.com/astral-sh/uv).
+- Change any settings by overriding their values in a file called `settings.local.toml`.
 - Create the folders `data/input` and `data/output`.
 - If using Docker, please do not edit the web server settings.
 
+## Usage
 
-## Pipeline Usage
-
-Docker will download all required data on the first run and thus may take a while.
-Future runs are cached and the app available immediately.
-
-Using **Docker**, start the program with:
-
-```docker-compose run app python -m recap_am.{entrypoint}```
-
-Using **Poetry**, start the program with:
-
-```poetry run python -m recap_am.{entrypoint}```
-
-The following entry points are available:
-
-- `server`: Starts a flask server providing a website to perform interactive mining. The address is printed in the terminal.
-- `cli`: Start the pipeline without interaction.
-- `evaluate`: Perform a grid computation with the parameters major claim method, relationship type threshold and graph construction method.
-
-Per default, the program will look for input data in `data/input`.
-If you just want to convert plain text to argument graph, a `.txt` file is enough.
-If you want to compare a benchmark graph to the generated on, please provide a `.json` file conforming to the [OVA-format](http://ova.uni-trier.de).
-
+`uv run argmining`
 
 ## Linguistic Features
 
@@ -53,17 +28,17 @@ If you want to compare a benchmark graph to the generated on, please provide a `
 
 To start training, run the program with:
 
-``` poetry run python -m recap_am.adu.training.train_adu```
+`uv run -m argmining.adu.training.train_adu`
 
 or
 
-``` poetry run python -m recap_am.adu.training.train_clpr```
+`uv run -m argmining.adu.training.train_clpr`
 
 for the ADU or Claim/Premise classifier respectively.
 
 ### Relationship Type
 
-Start the jupyter notebook `recap_am/preprocessing/pipeline.ipynb` within the container:
+Start the jupyter notebook `argmining/preprocessing/pipeline.ipynb` within the container:
 
 - Run cells & import libraries.
 - Load your CSV data with the rows `child, parent, stance` into a DataFrame `df`.
