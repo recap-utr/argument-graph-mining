@@ -24,7 +24,7 @@ Using **Docker**, start the program with:
 
 Using **uv**, start the program with:
 
-```uv run argmining-{entrypoint}```
+`uv run argmining-{entrypoint}`
 
 The following entry points are available:
 
