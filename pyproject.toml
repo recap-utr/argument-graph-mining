@@ -47,6 +47,9 @@ argmining-eval = "argmining.app:evaluate"
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
+[tool.pyright]
+typeCheckingMode = "basic"
+
 [[tool.uv.sources.en-core-web-lg]]
 url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-2.2.0/en_core_web_lg-2.2.0.tar.gz"
 

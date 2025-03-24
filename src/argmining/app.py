@@ -15,9 +15,9 @@ from zipfile import ZipFile
 import flask
 import grpc
 import pendulum
-import werkzeug
 from grpc_reflection.v1alpha import reflection
 from sklearn.model_selection import ParameterGrid
+from werkzeug.datastructures import FileStorage
 
 import arggraph as ag
 from arg_services.graph.v1 import graph_pb2
@@ -53,8 +53,8 @@ def run_server() -> None:
 
         if flask.request.method == "POST":
             try:
-                query_files = flask.request.files.getlist("query-files")
-                _update_config(flask.request.form, from_flask=True)
+                query_files = flask.request.files.getlist("query-files")  # pyright: ignore
+                _update_config(flask.request.form, from_flask=True)  # pyright: ignore
                 stats = run(query_files)
             except Exception:
                 flask.flash(traceback.format_exc(), "error")
@@ -124,7 +124,7 @@ def _timestamp() -> str:
 
 
 def run(
-    query_files: t.Optional[t.List[werkzeug.FileStorage]] = None,
+    query_files: t.Optional[t.List[FileStorage]] = None,
     timestamp: t.Optional[str] = None,
     subfolder: t.Optional[str] = None,
 ) -> Statistics:
@@ -254,10 +254,10 @@ class MiningService(mining_pb2_grpc.MiningServiceServicer):
             try:
                 graph_aif = _text2graph(str(idx), text)
                 graph_pb = aif2protobuf(graph_aif)
-                response.graphs.append(graph_pb)
+                response.graphs.append(graph_pb)  # pyright: ignore
             except Exception:
                 print(traceback.format_exc())
-                response.graphs.append(graph_pb2.Graph())
+                response.graphs.append(graph_pb2.Graph())  # pyright: ignore
 
         return response
 
