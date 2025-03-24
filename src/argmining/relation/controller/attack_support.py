@@ -6,10 +6,8 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 from spacy.tokens import Doc, Span
 
-from argmining.model.config import Config
+from argmining.model.config import config
 from argmining.relation.model.relation import Relation, RelationClass
-
-config = Config.get_instance()
 
 
 def classify(adus: Iterable[Union[Doc, Span]]) -> Dict[str, List[Relation]]:

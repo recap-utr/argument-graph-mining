@@ -3,12 +3,9 @@ import logging
 import edlib
 
 import arggraph as ag
-from argmining.model.config import Config
+from argmining.model.config import config
 
 logger = logging.getLogger(__name__)
-
-config = Config.get_instance()
-
 
 # def _jaccard(node1: ag.Node, node2: ag.Node) -> float:
 #     return 1 - nltk.jaccard_distance(

@@ -10,11 +10,8 @@ import werkzeug
 
 import arggraph as ag
 from argmining.controller import nlp
-from argmining.model.config import Config
 
 logger = logging.getLogger(__name__)
-config = Config.get_instance()
-
 extensions = [".json", ".txt", ".text", ".label", ".ann"]
 
 

@@ -6,9 +6,7 @@ from nltk.stem import SnowballStemmer
 from sentence_transformers import SentenceTransformer
 from spacy.tokens import Doc, Span
 
-from argmining.model.config import Config
-
-config = Config.get_instance()
+from argmining.model.config import config
 
 lang = config["nlp"]["language"]
 auxdir = config["adu"]["auxiliary"]["dir"]

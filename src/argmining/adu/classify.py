@@ -7,9 +7,7 @@ from sklearn.model_selection import (
 )
 
 from argmining.adu import utilities
-from argmining.model.config import Config
-
-config = Config.get_instance()
+from argmining.model.config import config
 
 
 def fit_model(input_doc):

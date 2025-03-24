@@ -3,7 +3,7 @@ import os
 
 from argmining.adu import run_task
 from argmining.controller.preprocess import read_files
-from argmining.model.config import Config
+from argmining.model.config import config
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -70,7 +70,6 @@ def read(in_files, l_files, input_file):
     return in_files, l_files
 
 
-config = Config.get_instance()
 in_files = []
 l_files = []
 t_files = []

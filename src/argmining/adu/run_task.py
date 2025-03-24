@@ -8,9 +8,6 @@ from argmining.adu.classify import (
     test_model,
 )
 from argmining.adu.feature_select import add_embeddings, filter_feats
-from argmining.model.config import Config
-
-config = Config.get_instance()
 
 
 def run_train(input_doc):

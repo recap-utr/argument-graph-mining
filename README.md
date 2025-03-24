@@ -9,7 +9,7 @@ This program has been used to perform the evaluation of our proposed argument mi
 
 ## Installation
 
-- Duplicate the file `config-example.yml` to `config.yml` and adapt the settings to your liking.
+- Change any settings by overriding their values in a file called `settings.local.toml`.
 - Create the folders `data/input` and `data/output`.
 - If using Docker, please do not edit the web server settings.
 

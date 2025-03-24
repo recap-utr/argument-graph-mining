@@ -25,7 +25,7 @@ from arg_services.mining.v1beta import mining_pb2, mining_pb2_grpc
 from argmining.adu import run_task
 from argmining.controller.preprocess import prep_production
 from argmining.evaluation import evaluator
-from argmining.model.config import Config
+from argmining.model.config import config
 from argmining.model.protobuf_graph import aif2protobuf
 from argmining.model.query import Query
 from argmining.model.statistic import Statistic, Statistics
@@ -36,8 +36,6 @@ logging.basicConfig(level=logging.WARNING)
 
 log = logging.getLogger(__package__)
 log.setLevel(logging.INFO)
-
-config = Config.get_instance()
 
 warnings.filterwarnings("ignore")
 
@@ -234,14 +232,16 @@ def _update_config(data: t.Mapping[str, t.Any], from_flask: bool = False) -> Non
     if from_flask:
         config["export"]["json"] = bool(data.get("export-json"))
         config["export"]["picture"] = bool(data.get("export-picture"))
-
         config["path"]["input"] = data["input-path"]
 
+    if "relation-fallback" in data:
         config["relation"]["fallback"] = data["relation-fallback"]
-
-    config["adu"]["MC"]["method"] = data["mc-method"]
-    config["relation"]["method"] = data["relation-method"]
-    config["relation"]["threshold"] = float(data["relation-threshold"])
+    if "mc-method" in data:
+        config["adu"]["MC"]["method"] = data["mc-method"]
+    if "relation-method" in data:
+        config["relation"]["method"] = data["relation-method"]
+    if "relation-threshold" in data:
+        config["relation"]["threshold"] = float(data["relation-threshold"])
 
 
 class MiningService(mining_pb2_grpc.MiningServiceServicer):

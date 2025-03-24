@@ -9,7 +9,7 @@ from sklearn.utils import shuffle
 from argmining.adu import classify, run_task
 from argmining.adu.feature_select import add_embeddings, filter_feats
 from argmining.controller.preprocess import read_files
-from argmining.model.config import Config
+from argmining.model.config import config
 
 # from argmining.app import _export
 
@@ -155,7 +155,6 @@ in_files = []
 l_files = []
 t_files = []
 t_labels = []
-config = Config.get_instance()
 datapath = "data/ADU/in/PE/" + config["nlp"]["language"]
 train_path = datapath + "/train"
 test_path = datapath + "/test"

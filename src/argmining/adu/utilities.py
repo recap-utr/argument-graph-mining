@@ -28,9 +28,7 @@ except ImportError:
 
 
 from argmining.adu.grids import Grid
-from argmining.model.config import Config
-
-config = Config.get_instance()
+from argmining.model.config import config
 
 lang = config["nlp"]["language"]
 

@@ -10,13 +10,10 @@ from argmining.controller import nlp
 from argmining.controller.extract_features import set_features
 from argmining.controller.nlp import parse
 from argmining.evaluation import similarity
-from argmining.model.config import Config
 from argmining.model.statistic import Statistic
 from argmining.relation import construct_graph
 from argmining.relation.controller import attack_support
 from argmining.relation.model.relation import Relation, RelationClass
-
-config = Config.get_instance()
 
 
 @dataclass(frozen=True)

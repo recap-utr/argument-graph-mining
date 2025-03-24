@@ -9,9 +9,7 @@ from spacy.tokens import Doc, Span, Token
 
 from argmining.controller.extract_features import set_features
 from argmining.controller.nlp import parse
-from argmining.model.config import Config
-
-config = Config.get_instance()
+from argmining.model.config import config
 
 # nltk.download("punkt")
 
