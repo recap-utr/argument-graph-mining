@@ -247,6 +247,7 @@ def _update_config(data: t.Mapping[str, t.Any], from_flask: bool = False) -> Non
 class MiningService(mining_pb2_grpc.MiningServiceServicer):
     def RunPipeline(self, request, context):
         response = mining_pb2.RunPipelineResponse()
+        _update_config(request.extras)
 
         for idx, text in enumerate(request.texts, start=1):
             log.info(f"Processing {idx}/{len(request.texts)}).")
