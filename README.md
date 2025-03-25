@@ -1,11 +1,10 @@
-# ReCAP Argument Graph Mining
+# Argument Graph Mining
 
-This program has been used to perform the evaluation of our proposed argument mining pipeline.
+Code for the paper "Towards an Argument Mining Pipeline Transforming Texts to Argument Graphs" presented at COMMA 2020.
 
 ## System Requirements
 
-- [Docker](www.docker.com) and [Docker-Compose](https://github.com/docker/compose)
-- Alternatively: [uv](https://github.com/astral-sh/uv)
+[Docker](www.docker.com) or [uv](https://github.com/astral-sh/uv)
 
 ## Installation
 
@@ -20,7 +19,7 @@ Future runs are cached and the app available immediately.
 
 Using **Docker**, start the program with:
 
-`docker-compose run argmining-{entrypoint}`
+`docker compose run --rm --service-ports {entrypoint}`
 
 Using **uv**, start the program with:
 
