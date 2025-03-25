@@ -18,4 +18,6 @@ RUN uv run --frozen --module nltk.downloader punkt stopwords
 
 COPY . ./
 
+RUN uv sync --frozen
+
 ENTRYPOINT ["uv", "run", "--frozen"]
