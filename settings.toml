@@ -12,9 +12,9 @@ nltk_model = "english"         # english, german
 spacy_model = "en_core_web_lg" # en_core_web_lg, de_core_news_md
 
 [flask]
-name = "ReCAP-Argument-Mining"
+name = "Argument Graph Mining"
 host = "0.0.0.0"
-port = 80
+port = 8000
 
 [grpc]
 host = "0.0.0.0"

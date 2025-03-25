@@ -2,7 +2,7 @@ services:
   app:
     build: .
     ports:
-      - "8888:80"
+      - "8000:8000"
     command: ["argmining-app"]
   grpc:
     build: .

@@ -85,7 +85,6 @@ def run_server() -> None:
         flask.flash("The requested file is not available.", "error")
         return flask.render_template("index.html", config=config, statistics=None)
 
-    log.info("If run via docker, the address is http://localhost:8888.")
     app.run(host=config["flask"]["host"], port=config["flask"]["port"])
 
 
