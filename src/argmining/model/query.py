@@ -6,7 +6,7 @@ import typing as t
 from dataclasses import dataclass
 from pathlib import Path
 
-import werkzeug
+from werkzeug.datastructures import FileStorage
 
 import arggraph as ag
 from argmining.controller import nlp
@@ -45,9 +45,7 @@ class Query:
         return list(queries.values())
 
     @classmethod
-    def from_flask(
-        cls, files: t.Optional[t.Iterable[werkzeug.FileStorage]]
-    ) -> t.List[Query]:
+    def from_flask(cls, files: t.Optional[t.Iterable[FileStorage]]) -> t.List[Query]:
         queries: t.Dict[str, Query] = {}
 
         if files:
@@ -103,7 +101,7 @@ def _parse_file(name: str, suffix: str, file: t.IO, query: Query) -> None:
 
 
 def _parse_txt(file: t.IO) -> str:
-    return file.read()
+    return str(file.read())
 
 
 def _parse_json(name: str, file: t.IO) -> ag.Graph:
